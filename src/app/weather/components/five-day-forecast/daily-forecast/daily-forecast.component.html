@@ -1,14 +1,15 @@
 <div class="daily-forecast">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>{{ dailyForecast.Date | date }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="forecast-details">
-        <p>{{ dailyForecast.Temperature.Minimum.Value }} - {{ dailyForecast.Temperature.Maximum.Value }}{{ dailyForecast.Temperature.Maximum.Unit }}°</p>
-        <p>{{ dailyForecast.Day.IconPhrase }}</p>
-        <img [src]="getIconUrl(dailyForecast.Day.Icon)" alt="{{ dailyForecast.Day.IconPhrase }} icon" class="weather-icon">
-      </div>
-    </mat-card-content>
-  </mat-card>
+  <mat-divider></mat-divider>
+  {{ dailyForecast.Date | date }}
+  <div class="forecast-details">
+    <div class="temperature">
+      <p>{{ dailyForecast.Temperature.Minimum.Value }} - {{ dailyForecast.Temperature.Maximum.Value }}{{
+        dailyForecast.Temperature.Maximum.Unit }}°</p>
+    </div>
+    <div class="icon">
+      <p>{{ dailyForecast.Day.IconPhrase }}</p>
+      <img [src]="getIconUrl(dailyForecast.Day.Icon)" alt="{{ dailyForecast.Day.IconPhrase }} icon"
+        class="weather-icon">
+    </div>
+  </div>
 </div>

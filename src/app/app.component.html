@@ -2,23 +2,20 @@
   <div id="loader">
     <mat-progress-bar *ngIf="displayLoading" mode="indeterminate"></mat-progress-bar>
   </div>
-
   <div id="sidenav-container">
     <h1>WeatherMe</h1>
-
     <div class="link-wrapper">
       <mat-icon>cloud</mat-icon>
       <p routerLink="/weather">Weather</p>
     </div>
-
     <mat-slide-toggle id="slide-toggle-Fahrenheit" (change)="changeTemperatureUnit()">
       <label>
-        Temperature in Fahrenheit
+        Fahrenheit
       </label>
     </mat-slide-toggle>
     <mat-slide-toggle id="slide-toggle-dark" (change)="toggleTheme()">
       <label>
-        to dark
+        To dark
       </label>
     </mat-slide-toggle>
   </div>

@@ -18,7 +18,7 @@ import { DailyForecastComponent } from './components/five-day-forecast/daily-for
 import { FiveDayForecastComponent } from './components/five-day-forecast/five-day-forecast.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { ToastrModule } from 'ngx-toastr';
-import { MatProgressSpinnerModule  } from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 
@@ -43,10 +43,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
     HttpClientModule,
     MatCardModule,
     MatIconModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center'
+    }),
     MatProgressSpinnerModule,
     MatGridListModule,
-    
+
   ],
 })
 export class WeatherModule { }

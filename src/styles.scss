@@ -33,18 +33,14 @@ mat-card {
 
 .weather-info p {
   margin: 5px 0;
-  font-size: 16px;
+  font-size: 40px;
 }
 
 mat-icon {
   font-size: 48px;
 }
 
-.toast-top-right {
-  top: 12px;
-  right: 12px;
-}
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 // body.light-theme {
 //   background-color: white;
 //   color: black;
@@ -54,3 +50,12 @@ mat-icon {
 //   background-color: black;
 //   color: white;
 // }
+.toast-top-center {
+  position: fixed;
+  top: 12px;
+  transform: translateX(50%);
+  background-color:white;
+  right: 50%;
+  width: 100%;
+
+}

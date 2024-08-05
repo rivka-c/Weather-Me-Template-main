@@ -15,33 +15,33 @@ export class AppComponent implements OnInit {
   isFahrenheit = false;
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private loaderService: LoaderService, private weatherService: WeatherService,private themeService: ThemeService) { }
+  constructor(private loaderService: LoaderService, private weatherService: WeatherService, private themeService: ThemeService) { }
 
   ngOnInit() {
     this.subscriptions.add(
       this.weatherService.temperatureUnitChanged.subscribe(isMetric => {
         this.isFahrenheit = isMetric === true ? false : true;
       })
-   );
-   this.subscriptions.add(
+    );
+    this.subscriptions.add(
       this.loaderService.stateChange.subscribe((loaderState) => {
         setTimeout(() => {
           this.displayLoading = loaderState;
         });
       })
-   );
+    );
   }
 
   changeTemperatureUnit() {
     this.weatherService.isMetric = !this.weatherService.isMetric;
     this.weatherService.setTemperatureUnit();
   }
-  toggleTheme(){
+  toggleTheme() {
     this.themeService.toggleTheme();
   }
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
- }
- 
+}
+
 

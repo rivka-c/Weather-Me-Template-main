@@ -26,9 +26,6 @@ export class WeatherComponent implements OnInit {
   searchControl = new FormControl();
   locations: Location[] = [];
   error: string | null = null;
-  selectedLocationDetails: Location;
-  fiveDayForecast: any = null;
-  currentConditions: any = null;
   selectedLocationKey: string = null;
 
   isLoading = false;
@@ -42,6 +39,4 @@ export class WeatherComponent implements OnInit {
   onSearchCompleted(event: string) {
     this.selectedLocationKey = event;
   }
-
- 
 }

@@ -21,7 +21,6 @@ export class SearchPage implements OnInit {
 
   locations: Location[] = [];
   error: string | null = null;
-  selectedLocationDetails: Location;
   favorites: Location[] = [];
   private currentQuery: string = '';
 
@@ -36,7 +35,7 @@ export class SearchPage implements OnInit {
         debugger;
         if (!this.isEnglishLettersOnly(query)) {
           this.error = 'Please enter English letters only';
-          this.toastr.error(this.error, 'Error'); 
+          this.toastr.error(this.error, 'Error');
           this.searchControl.setValue(query.replace(/[^A-Za-z\s]/g, ''), { emitEvent: false });
           return of([]);
         } else {
@@ -45,7 +44,7 @@ export class SearchPage implements OnInit {
           return this.locationService.getAutocompleteLocation(query).pipe(
             catchError(err => {
               this.error = 'Error loading data';
-              this.toastr.error(this.error, 'Error'); 
+              this.toastr.error(this.error, 'Error');
               return of([]);
             })
           );
@@ -59,10 +58,8 @@ export class SearchPage implements OnInit {
         this.loadFavorites();
       }
     });
-    
   }
-
-  // פונקציה לבדיקת תווים אנגליים בלבד
+  
   isEnglishLettersOnly(input: string): boolean {
     const englishLettersRegex = /^[A-Za-z\s]*$/;
     return englishLettersRegex.test(input);
@@ -78,19 +75,7 @@ export class SearchPage implements OnInit {
     if (selectedLocation) {
       selectedLocationKey = selectedLocation.Key;
     }
-
     this.searchCompleted.emit(selectedLocationKey);
-    this.locationService.getLocationByKey(selectedLocationKey).subscribe(
-      details => {
-        this.selectedLocationDetails = details;
-        this.error = null;
-
-      },
-      err => {
-        this.error = 'Error loading city details';
-        this.selectedLocationDetails = null;
-      }
-    );
   }
 
   isFavorite(locationKey: string): boolean {
@@ -106,8 +91,4 @@ export class SearchPage implements OnInit {
       this.favorites = await this.favoritesService.getFavorites();
     }
   }
-
- 
-
-
 }

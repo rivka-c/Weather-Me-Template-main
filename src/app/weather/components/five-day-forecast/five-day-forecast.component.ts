@@ -20,14 +20,14 @@ export class FiveDayForecastComponent implements OnChanges {
     private weatherService: WeatherService,
     private toastr: ToastrService,
     private loaderService: LoaderService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.subscriptions.add(
       this.weatherService.temperatureUnitChanged.subscribe(() => {
         this.getForecast();
       })
-   );
+    );
   }
   ngOnChanges(changes: SimpleChanges) {
     if (changes.selectedLocationKey) {
@@ -36,18 +36,18 @@ export class FiveDayForecastComponent implements OnChanges {
   }
   getForecast() {
     this.loaderService.addRequest();
-      this.weatherService.getForecast(this.selectedLocationKey).subscribe({
-        next: (forecast) => {
-          this.fiveDayForecast = forecast;
-          this.error = null;
-          this.loaderService.removeRequest();
-        },
-        error: (err) => {
-          this.error = 'Failed to load forecast';
-          this.toastr.error(this.error, 'Error');
-          this.loaderService.removeRequest();
-        }
-      });
+    this.weatherService.getForecast(this.selectedLocationKey).subscribe({
+      next: (forecast) => {
+        this.fiveDayForecast = forecast;
+        this.error = null;
+        this.loaderService.removeRequest();
+      },
+      error: (err) => {
+        this.error = 'Failed to load forecast';
+        this.toastr.error(this.error, 'Error');
+        this.loaderService.removeRequest();
+      }
+    });
   }
   ngOnDestroy() {
     this.subscriptions.unsubscribe();

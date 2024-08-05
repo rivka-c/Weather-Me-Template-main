@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { Subscription } from 'rxjs';
 import { ThemeService } from 'src/app/core/services/theme.service';
+import { LocationService } from 'src/app/core/services/location.service';
+import { Location } from 'src/app/shared/models/location.model';
 
 
 @Component({
@@ -18,32 +20,37 @@ export class CurrentWeatherComponent implements OnChanges {
   currentConditions: CurrentWeather = null;
   private subscriptions: Subscription = new Subscription();
   isMetric = true;
-
+  selectedLocationDetails: Location;
 
   constructor(
     private weatherService: WeatherService,
     private toastr: ToastrService,
     private loaderService: LoaderService,
-    private themeService: ThemeService
-  ) {}
+    private locationService: LocationService
+  ) { }
   ngOnInit() {
-   this.subscriptions.add(
+    this.subscriptions.add(
       this.weatherService.temperatureUnitChanged.subscribe((isMetric) => {
-        this.isMetric=(isMetric);
+        this.isMetric = (isMetric);
       })
-   );
-   this.subscriptions.add(
-  this.themeService.isDarkTheme$.subscribe(isDark => {
-      debugger;
-      const theme = isDark ? 'dark-theme' : 'light-theme';
-      document.body.classList.add(theme);
-      document.body.classList.remove(isDark ? 'light-theme' : 'dark-theme');
-    })
-   );
+    );
   }
   ngOnChanges(changes: SimpleChanges) {
     if (changes.selectedLocationKey) {
       this.loaderService.addRequest();
+      this.locationService.getLocationByKey(this.selectedLocationKey).subscribe({
+        next: details => {
+          this.selectedLocationDetails = details;
+          this.error = null;
+
+        },
+        error: err => {
+          this.error = 'Error loading city details';
+          this.toastr.error(this.error, 'Error');
+          this.selectedLocationDetails = null;
+        }
+      }
+      );
       this.weatherService.getCurrentWeather(this.selectedLocationKey).subscribe({
         next: (conditions) => {
           this.currentConditions = conditions[0];

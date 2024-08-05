@@ -9,11 +9,10 @@ import { DailyForecast } from 'src/app/shared/models/forecast.model';
 })
 export class DailyForecastComponent {
 
-constructor(private weatherService: WeatherService) {
-}
+  constructor(private weatherService: WeatherService) {
+  }
   @Input() dailyForecast: DailyForecast;
   getIconUrl(iconId: Number) {
-   return this.weatherService.getIconUrl(iconId);
-// return `https://developer.accuweather.com/sites/default/files/${iconId.toString().padStart(2, '0')}-s.png`;
-}
+    return this.weatherService.getIconUrl(iconId);
+  }
 }
