@@ -1,0 +1,36 @@
+.weather-card {
+  margin: 16px;
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.temperature, .weather-text, .weather-icon {
+  margin: 8px 0;
+}
+
+.weather-icon img {
+  width: 50px;
+  height: 50px;
+}
+
+@media (min-width: 640px) {
+  .weather-info {
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: left;
+  }
+
+  .temperature, .weather-text, .weather-icon {
+    margin: 0 16px;
+  }
+
+  .weather-icon img {
+    width: 75px;
+    height: 75px;
+  }
+}

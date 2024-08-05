@@ -1,0 +1,33 @@
+.weather-container {
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .weather-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

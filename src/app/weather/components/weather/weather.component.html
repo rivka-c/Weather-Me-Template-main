@@ -1,0 +1,14 @@
+<div *ngIf="isLoading" class="loader">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<div class="weather-container mat-elevation-z8">
+
+  <div class="content">
+    <app-search (searchCompleted)="onSearchCompleted($event)"></app-search>
+    <div class="weather-details">
+      <app-current-weather @fadeIn [selectedLocationKey]="selectedLocationKey"></app-current-weather>
+      <app-five-day-forecast @fadeIn [selectedLocationKey]="selectedLocationKey"></app-five-day-forecast>
+    </div>
+  </div>
+</div>

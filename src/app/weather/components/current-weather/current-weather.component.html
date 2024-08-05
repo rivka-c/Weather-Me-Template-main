@@ -1,0 +1,23 @@
+<mat-card class="weather-card">
+  <mat-card-header>
+    <mat-card-title>Current Conditions</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="weather-info">
+      <div class="temperature">
+        <ng-container *ngIf="isMetric; else fahrenheitTemplate">
+          <p>{{ currentConditions?.Temperature?.Metric?.Value }} {{ currentConditions?.Temperature?.Metric?.Unit }}°</p>
+        </ng-container>
+        <ng-template #fahrenheitTemplate>
+          <p>{{ currentConditions?.Temperature?.Imperial?.Value }} {{ currentConditions?.Temperature?.Imperial?.Unit }}°</p>
+        </ng-template>
+      </div>
+      <div class="weather-text">
+        <p>{{ currentConditions.WeatherText }}</p>
+      </div>
+      <div class="weather-icon">
+        <img [src]="getIconUrl(currentConditions.WeatherIcon)" alt="{{ currentConditions.WeatherText }} icon">
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
