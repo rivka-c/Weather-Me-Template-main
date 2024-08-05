@@ -32,7 +32,6 @@ export class SearchPage implements OnInit {
     this.searchControl.valueChanges.pipe(
       debounceTime(300),
       switchMap(query => {
-        debugger;
         if (!this.isEnglishLettersOnly(query)) {
           this.error = 'Please enter English letters only';
           this.toastr.error(this.error, 'Error');
@@ -51,7 +50,6 @@ export class SearchPage implements OnInit {
         }
       })
     ).subscribe(locations => {
-      debugger;
       if (this.currentQuery === this.searchControl.value) {
         this.locations = locations;
         this.error = null;
@@ -59,14 +57,13 @@ export class SearchPage implements OnInit {
       }
     });
   }
-  
+
   isEnglishLettersOnly(input: string): boolean {
     const englishLettersRegex = /^[A-Za-z\s]*$/;
     return englishLettersRegex.test(input);
   }
 
   async loadFavorites() {
-    debugger;
     this.favorites = await this.favoritesService.getFavorites()
   }
   onCitySelected(event?: any) {

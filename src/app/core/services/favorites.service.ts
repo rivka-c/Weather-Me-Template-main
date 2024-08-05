@@ -36,7 +36,6 @@ export class FavoritesService {
   }
 
   async getFavorites(): Promise<Location[]> {
-    debugger;
     return this.favorites;
   }
 }
