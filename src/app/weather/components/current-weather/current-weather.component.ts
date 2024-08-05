@@ -4,7 +4,6 @@ import { CurrentWeather } from 'src/app/shared/models/currentWeather.model';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { Subscription } from 'rxjs';
-import { ThemeService } from 'src/app/core/services/theme.service';
 import { LocationService } from 'src/app/core/services/location.service';
 import { Location } from 'src/app/shared/models/location.model';
 

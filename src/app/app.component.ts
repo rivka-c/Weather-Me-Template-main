@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LoaderService } from './core/services/loader.service';
 import { WeatherService } from './core/services/weather.service';
 import { Subscription } from 'rxjs';
-import { ThemeService } from './core/services/theme.service';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class AppComponent implements OnInit {
   isFahrenheit = false;
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private loaderService: LoaderService, private weatherService: WeatherService, private themeService: ThemeService) { }
+  constructor(private loaderService: LoaderService, private weatherService: WeatherService) { }
 
   ngOnInit() {
     this.subscriptions.add(
@@ -36,9 +35,7 @@ export class AppComponent implements OnInit {
     this.weatherService.isMetric = !this.weatherService.isMetric;
     this.weatherService.setTemperatureUnit();
   }
-  toggleTheme() {
-    this.themeService.toggleTheme();
-  }
+  
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
